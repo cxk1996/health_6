@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.itheima.dao.SetmealDao">
+    <!--新增套餐,返回id-->
+    <insert id="add" parameterType="setmeal">
+        <selectKey resultType="integer" keyProperty="id" order="AFTER">
+          SELECT LAST_insert_id()
+        </selectKey>
+        insert into t_setmeal
+        (code,name,sex,age,helpCode,price,remark,attention,img)
+        values
+        (#{code},#{name},#{sex},#{age},#{helpCode},#{price},#{remark},#{attention},#{img})
+    </insert>
+
+    <!--设置套餐关联检查组-->
+    <insert id="setMealAndGroup" parameterType="map">
+        INSERT INTO t_setmeal_checkgroup
+        (setmeal_id,checkgroup_id)
+      	values
+      	(#{setmeal_id},#{checkgroup_id})
+    </insert>
+
+    <select id="findPage" parameterType="string" resultType="setmeal">
+        SELECT * FROM t_setmeal
+        <if test="value!=null and value.length>0">
+            WHERE name=#{value} OR code=#{value} OR helpCode=#{value}
+        </if>
+    </select>
+
+    <select id="getSetmeal" resultType="setmeal">
+        SELECT * FROM t_setmeal
+    </select>
+
+    <resultMap id="setmealMap" type="setmeal">
+        <id column="id" property="id"/>
+        <result column="name" property="name"/>
+        <result column="code" property="code"/>
+        <result column="helpCode" property="helpCode"/>
+        <result column="sex" property="sex"/>
+        <result column="age" property="age"/>
+        <result column="price" property="price"/>
+        <result column="remark" property="remark"/>
+        <result column="attention" property="attention"/>
+        <result column="img" property="img"/>
+    </resultMap>
+    <resultMap id="findByIdMap" type="setmeal" extends="setmealMap">
+        <collection property="checkGroups" javaType="ArrayList"
+                    ofType="com.itheima.pojo.CheckGroup" column="id"
+                    select="com.itheima.dao.CheckGroupDao.findCheckGroupById">
+        </collection>
+    </resultMap>
+
+    <select id="findById" resultMap="findByIdMap">
+        select * from t_setmeal  where id=#{id}
+    </select>
+
+
+</mapper>
