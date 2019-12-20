@@ -1,16 +1,28 @@
 package com.itheima.jobs;
 
 import com.itheima.constant.RedisConstant;
+import com.itheima.dao.OrderDao;
+import com.itheima.dao.OrderSettingDao;
+import com.itheima.utils.DateUtils;
 import com.itheima.utils.QiniuUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import redis.clients.jedis.JedisPool;
 
+import java.util.Date;
 import java.util.Set;
 
+@Component
 public class ClearImgJob {
 
     @Autowired
     private JedisPool jedisPool;
+
+    @Autowired
+    private OrderDao orderDao;
+
+    @Autowired
+    private OrderSettingDao orderSettingDao;
 
     public void clearImg() {
 
@@ -30,4 +42,22 @@ public class ClearImgJob {
         }
     }
 
+    /**
+     * 定时清理预约数据
+     */
+    public void clearOrder(){
+
+        //jobService.clearOrder();
+        //Date date = DateUtils.getToday();
+        Date date = null;
+        try {
+            date = DateUtils.parseString2Date("2019-03-10");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        orderDao.clearOrder(date);
+        orderSettingDao.clearOrderSetting(date);
+
+    }
 }
+

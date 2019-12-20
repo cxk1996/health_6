@@ -43,7 +43,7 @@
         </mvc:message-converters>
     </mvc:annotation-driven>
 
-    <!--映入 spring-security.xm-->
-    <import resource="spring-security.xml"></import>
+    <!--引入 spring-security.xm-->
+    <import resource="spring-security.xml"/>
 
 </beans>

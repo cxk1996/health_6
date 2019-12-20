@@ -32,4 +32,9 @@
     <select id="getOrderSettingByMonth" parameterType="map" resultType="OrderSetting">
         SELECT * FROM t_ordersetting WHERE  orderDate BETWEEN #{dateBegin} AND #{dateEnd}
     </select>
+
+    <!--定时清理预约设置-->
+    <update id="clearOrderSetting" parameterType="date">
+        DELETE FROM t_ordersetting WHERE orderDate &lt; #{date}
+    </update>
 </mapper>

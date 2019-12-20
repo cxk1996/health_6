@@ -55,4 +55,9 @@
         order by setmeal_count desc limit 0,4
     </select>
 
+    <!--定时清理预约数据-->
+    <update id="clearOrder" parameterType="date">
+        DELETE FROM t_order WHERE orderdate &lt; #{date}
+    </update>
+
 </mapper>

@@ -266,8 +266,8 @@
             },
             dataList: [],//列表数据
             formData: {},//表单数据
-            tableData:[],//新增和编辑表单中对应的检查项列表数据
-            roleIds:[],//新增和编辑表单中检查项对应的复选框，基于双向绑定可以进行回显和数据提交
+            tableData:[],//新增和编辑表单中对应的角色列表数据
+            roleIds:[],//新增和编辑表单中角色对应的复选框，基于双向绑定可以进行回显和数据提交
             dialogFormVisible: false,//控制添加窗口显示/隐藏
             dialogFormVisible4Edit:false,//控制编辑窗口显示/隐藏
             rules: {//校验规则
@@ -349,6 +349,15 @@
                 //调用重置表单方法进行弹窗
                 this.resetForm();
                 this.dialogFormVisible = true;
+                //角色列表回显查询
+                axios.get("/role/findAll.do").then(res=>{
+                    if (res.data.flag==true){
+                        this.tableData=res.data.data
+                    }else{
+                        this.$message.error=res.data.message;
+                    }
+
+                })
                 
 
             },

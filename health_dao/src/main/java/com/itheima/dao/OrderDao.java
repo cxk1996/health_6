@@ -20,4 +20,10 @@ public interface OrderDao {
     Integer findVisitsCountByDate(String reportDate);
 
     Integer findVisitsCountAfterDate(String thisWeekMonday);
+
+    /**
+     * 定时清理预约数据
+     * @param date
+     */
+    void clearOrder(Date date);
 }

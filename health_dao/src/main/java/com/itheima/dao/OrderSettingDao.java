@@ -33,4 +33,10 @@ public interface OrderSettingDao {
      * @return
      */
     List<OrderSetting> getOrderSettingByMonth(Map<String, String> map);
+
+    /**
+     * 定时清理预约设置
+     * @param date
+     */
+    void clearOrderSetting(Date date);
 }

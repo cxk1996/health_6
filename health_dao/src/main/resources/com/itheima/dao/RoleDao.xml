@@ -8,4 +8,8 @@
         SELECT * FROM t_role WHERE id IN (SELECT role_id FROM t_user_role WHERE user_id = #{user_id})
     </select>
 
+    <select id="findAll" resultType="role">
+        SELECT * FROM t_role
+    </select>
+
 </mapper>

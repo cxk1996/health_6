@@ -16,7 +16,7 @@
     <security:http use-expressions="true" auto-config="true">
         <security:headers>
             <!--设置在页面可以通过iframe访问受保护的页面，默认为不允许访问-->
-            <security:frame-options policy="SAMEORIGIN"></security:frame-options>
+            <security:frame-options policy="SAMEORIGIN"/>
         </security:headers>
         <!--权限控制方式：
         方式一：配置文件方式
@@ -28,9 +28,11 @@
         <security:intercept-url pattern="/pages/**"  access="isAuthenticated()" />
 
         <!--自定义登录页面  -->
-        <security:form-login login-page="/login.html" login-processing-url="/login.do"
+        <security:form-login login-page="/login.html"
+                             login-processing-url="/login.do"
                              authentication-failure-url="/login.html"
-                             always-use-default-target="true" default-target-url="/pages/main.html"/>
+                             always-use-default-target="true"
+                             default-target-url="/pages/main.html"/>
 
         <!--403 - Forbidden：权限不足  禁用csrf攻击-->
         <security:csrf disabled="true" />
