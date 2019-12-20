@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
-///checkgroup/findGroupById.do?groupId=5
 @RestController
 @RequestMapping("/checkgroup")
 public class CheckGroupController {
