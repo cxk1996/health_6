@@ -12,4 +12,12 @@ public interface OrderDao {
     void add(Order order);
 
     Map findById(Integer id);
+
+    Integer findOrderCountByDate(String reportDate);
+
+    Integer findOrderCountAfterDate(String thisWeekMonday);
+
+    Integer findVisitsCountByDate(String reportDate);
+
+    Integer findVisitsCountAfterDate(String thisWeekMonday);
 }

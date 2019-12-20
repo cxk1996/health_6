@@ -16,4 +16,8 @@ public interface SetmealDao {
     List<Setmeal> getSetmeal();
 
     Setmeal findById(Integer id);
+
+    List<Map> hotSetmeal();
+
+    List<Map> setmealCount();
 }

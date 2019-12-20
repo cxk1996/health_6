@@ -11,4 +11,10 @@ public interface MemberDao {
     List<Member> selectByCondition(String telephone);
 
     int findMemberCountBeforeDate(String newYearMonth);
+
+    Integer findMemberCountByDate(String reportDate);
+
+    Integer findMemberTotalCount();
+
+    Integer findMemberCountAfterDate(String thisWeekMonday);
 }

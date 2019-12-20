@@ -56,5 +56,16 @@
         select * from t_setmeal  where id=#{id}
     </select>
 
+    <!--setmealCount 获取每个套餐对应的预约数量-->
+    <select id="setmealCount" resultType="map">
+        select ts.name,count(*) value from t_setmeal ts,t_order o where ts.id = o.setmeal_id group by ts.name
+    </select>
+
+    <!--热门套餐列表-->
+    <select id="hotSetmeal" resultType="map">
+        select ts.name,count(ts.id) setmeal_count,count(ts.id)/(select count(*) from t_setmeal) proportion,ts.remark
+        from t_setmeal ts,t_order o where ts.id = o.setmeal_id group by ts.name order by setmeal_count desc limit 0,4
+    </select>
+
 
 </mapper>

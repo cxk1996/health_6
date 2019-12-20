@@ -175,6 +175,17 @@
                             "title": "会员数量折线图",
                             "linkUrl":"report_member.html",
                             "children":[]
+                        },
+                        {
+                            "path": "/5-2",
+                            "title": "套餐预约占比饼形图",
+                            "linkUrl":"report_setmeal.html",
+                            "children":[]
+                        },{
+                            "path": "/5-3",
+                            "title": "运营数据统计",
+                            "linkUrl":"report_business.html",
+                            "children":[]
                         }
                     ]
                 },
@@ -218,6 +229,7 @@
                     //result对象
                     if(res.data.flag){
                         this.username = res.data.data;
+                        alert(res.data.data);
                     }
                 })
             }
